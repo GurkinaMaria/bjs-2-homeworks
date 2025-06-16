@@ -85,7 +85,7 @@ function averageEvenElementsWorker(...arr) {
 
   return sumEvenElement / countEvenElement;
 }
-averageEvenElementsWorker([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+
 
 function makeWork(arrOfArr, func) {
   let max = -Infinity;
@@ -101,4 +101,4 @@ function makeWork(arrOfArr, func) {
   return max;
 
 }
-makeWork([10, 10, 11, 20, 10], [67, 10, 2, 39, 88], [72, 75, 51, 87, 43], [30, 41, 55, 96, 62]);
+
