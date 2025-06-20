@@ -18,8 +18,8 @@ function calculateTotalMortgage(percent, contribution, amount, countMonths) {
  let bid = (percent / 100) / 12;
  let credit = amount-contribution;
  let monthlyPayment = credit * (bid + (bid / (((1 + bid) ** countMonths) - 1)));
- let result = monthlyPayment * 12;
- result = parseFloat(monthlyPayment.toFixed(2));
+ let result = monthlyPayment * countMonths;
+ result = parseFloat(result.toFixed(2));
  
  return result;
 }
