@@ -8,9 +8,7 @@ class PrintEditionItem {
     }
 
     fix() {
-        if (this.state < 100) {
-            this.state = Math.min(this.state * 1.5, 100);
-        }
+      this.state * 1.5;
     }
 
 
@@ -37,7 +35,7 @@ class Magazine extends PrintEditionItem {
 }
 
 class Book extends PrintEditionItem {
-    constructor(name, releaseDate, pagesCount, author) {
+    constructor(author, name, releaseDate, pagesCount) {
         super(name, releaseDate, pagesCount);
         this.author = author;
         this.type = "book";
@@ -45,7 +43,7 @@ class Book extends PrintEditionItem {
 }
 
 class NovelBook extends Book {
-    constructor(name, releaseDate, pagesCount, author) {
+    constructor(author, name, releaseDate, pagesCount) {
         super(name, releaseDate, pagesCount);
         this.author = author;
         this.type = "novel";
@@ -53,7 +51,7 @@ class NovelBook extends Book {
 }
 
 class FantasticBook extends Book {
-    constructor(name, releaseDate, pagesCount, author) {
+    constructor(author, name, releaseDate, pagesCount) {
         super(name, releaseDate, pagesCount);
         this.author = author;
         this.type = "fantastic";
@@ -61,7 +59,7 @@ class FantasticBook extends Book {
 }
 
 class DetectiveBook extends Book {
-    constructor(name, releaseDate, pagesCount, author) {
+    constructor(author, name, releaseDate, pagesCount) {
         super(name, releaseDate, pagesCount);
         this.author = author;
         this.type = "detective";
@@ -70,9 +68,9 @@ class DetectiveBook extends Book {
 
 
 class Library {
-    constructor(name, books) {
+    constructor(name) {
         this.name = name;
-        books = [];
+        this.books = [];
     }
 
     addBook(book) {
@@ -86,13 +84,16 @@ class Library {
     }
 
     giveBookByName(bookName) {
-    
-
+    const bookIndex = this.books.findIndex(book => book.name === bookName);
+    if (bookIndex !== -1) {
+      return this.books.splice(bookIndex, 1)[0];
+    }
+    return null;
+  }
 }
 
-}
 
-const issuedBook = library.giveBookByName("Руслан и Людмила");
+const issuedBook = Library.giveBookByName("Руслан и Людмила");
 if (issuedBook) {
   damagedBook.state = 10; 
   console.log(`Книга "${issuedBook.name}" повреждена, состояние: ${issuedBook.state}`);
@@ -100,7 +101,7 @@ if (issuedBook) {
   issuedBook.fix();
   console.log(`Книга "${issuedBook.name}" восстановлена, состояние: ${issuedBook.state}`);
   
-  library.addBook(issuedBook);
+  Library.addBook(issuedBook);
   console.log("Количество книг после попытки добавить восстановленную книгу: " + library.books.length);
 } else {
   console.log("Книга не найдена для выдачи.");
