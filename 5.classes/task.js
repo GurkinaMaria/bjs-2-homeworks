@@ -43,27 +43,26 @@ class Book extends PrintEditionItem {
 }
 
 class NovelBook extends Book {
-    constructor(name, releaseDate, pagesCount) {
+    constructor(author, name, releaseDate, pagesCount) {
         super(author, name, releaseDate, pagesCount);
         this.type = "novel";
     }
 }
 
 class FantasticBook extends Book {
-    constructor(name, releaseDate, pagesCount) {
+    constructor(author, name, releaseDate, pagesCount) {
         super(author, name, releaseDate, pagesCount);
         this.type = "fantastic";
     }
 }
 
 class DetectiveBook extends Book {
-    constructor(name, releaseDate, pagesCount) {
+    constructor(author, name, releaseDate, pagesCount) {
         super(author, name, releaseDate, pagesCount);
         this.type = "detective";
     }
 }
 
-const library = new Library;
   class Library {
     constructor(name) {
         this.name = name;
@@ -89,7 +88,7 @@ const library = new Library;
   }
 }
 
-
+const library = new Library;
 const issuedBook = Library.giveBookByName("Руслан и Людмила");
 if (issuedBook) {
   damagedBook.state = 10; 
